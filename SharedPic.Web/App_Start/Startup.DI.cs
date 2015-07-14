@@ -24,11 +24,39 @@ namespace SharedPic.Web
             // Configure the container (register dependencies)
             InitializeContainer(container);
 
-            // Register all MVC controllers
-            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+			// Register all MVC controllers
+			// Fail to register the AccountController.  Let's remove DI from Identity for now.
+			//container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
-            // Optionally verify the container's configuration.
-            container.Verify();
+
+			//List all Controller and register them, one by one.
+			//var registeredControllerTypes =
+			//	SimpleInjectorMvcExtensions.GetControllerTypesToRegister(
+			//	container, Assembly.GetExecutingAssembly());
+
+			//foreach (var controllerType in registeredControllerTypes)
+			//{
+			//	container.Register(controllerType, controllerType, Lifestyle.Transient);
+			//}
+
+			//List all controller, except... the exeception
+			var registeredControllerTypes =
+				SimpleInjectorMvcExtensions.GetControllerTypesToRegister(
+				container, Assembly.GetExecutingAssembly())
+				.Where(type => type.Name != "AccountController").
+				Where(type => type.Name != "ManageController");
+
+			foreach (var controllerType in registeredControllerTypes)
+			{
+				container.Register(controllerType, controllerType, Lifestyle.Transient);
+			}
+
+
+
+
+
+			// Optionally verify the container's configuration.
+			container.Verify();
 
             // Register the container as MVC DependencyResolver.
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));

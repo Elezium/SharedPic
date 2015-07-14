@@ -186,9 +186,15 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SharedImagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201507140506239_Initial.cs" />
+    <Compile Include="Migrations\201507140506239_Initial.Designer.cs">
+      <DependentUpon>201507140506239_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -256,6 +262,11 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\SharedImages\Create.cshtml" />
+    <Content Include="Views\SharedImages\Delete.cshtml" />
+    <Content Include="Views\SharedImages\Details.cshtml" />
+    <Content Include="Views\SharedImages\Edit.cshtml" />
+    <Content Include="Views\SharedImages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +287,11 @@
       <Project>{7023058b-271c-47cb-bb86-9deb55c89316}</Project>
       <Name>SharedPic.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201507140506239_Initial.resx">
+      <DependentUpon>201507140506239_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
